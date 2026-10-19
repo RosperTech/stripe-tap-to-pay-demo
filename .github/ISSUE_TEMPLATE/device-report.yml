@@ -1,0 +1,68 @@
+name: Device evaluation report
+description: Report a specific SUNMI device and firmware evaluation / 商米设备测试反馈
+title: "[Device evaluation] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Results apply to the tested configuration only. Do not include payment keys, card/customer data, serial numbers or unredacted logs.
+        结果只适用于本次测试的配置。请勿上传密钥、银行卡/客户信息、设备序列号或未脱敏日志。
+  - type: input
+    id: device
+    attributes:
+      label: Manufacturer, exact model and SKU / 厂商、准确型号和 SKU
+    validations:
+      required: true
+  - type: textarea
+    id: firmware
+    attributes:
+      label: Firmware and system / 固件与系统
+      description: GMS variant, firmware build, Android version and security patch date.
+    validations:
+      required: true
+  - type: input
+    id: app
+    attributes:
+      label: App version and test date / App 版本与测试日期
+      placeholder: "0.1.0; YYYY-MM-DD"
+    validations:
+      required: true
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Test stage / 测试阶段
+      options:
+        - Local eligibility only / 仅本地检查
+        - Simulated flow / 模拟流程
+        - Real reader connection only / 仅真实读卡器连接
+        - Physical payment exercise in Stripe test mode / 测试环境实体卡流程
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Demo mode / 模拟读卡器开关
+      options:
+        - "OFF"
+        - "ON"
+        - Not configured / 未配置
+    validations:
+      required: true
+  - type: textarea
+    id: results
+    attributes:
+      label: Observed results and exact error codes / 结果与准确错误码
+      description: Separate local checks, reader connection, simulated payment and physical payment results. State untested steps explicitly.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce / 复现步骤
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Public report / 公开报告
+      options:
+        - label: I removed secrets, customer data and unique device identifiers. / 已去除密钥、客户数据和唯一设备标识。
+          required: true

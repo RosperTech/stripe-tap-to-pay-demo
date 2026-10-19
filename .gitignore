@@ -1,0 +1,9 @@
+*.apk
+*.aab
+*.keystore
+*.jks
+.env
+.env.*
+local.properties
+node_modules/
+.DS_Store
