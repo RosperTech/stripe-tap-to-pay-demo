@@ -32,12 +32,12 @@ APK 最低可安装系统为 Android 8.0；Tap to Pay 的本地检查要求 **An
 
 ## 配置模拟演示
 
-**APK 已预置服务器地址、设备访问凭据和 Terminal Location。** 支付演示前仍需与测试负责人确认选中的测试配置。免手动配置并不保证当前设备支持拍卡或支付成功。
+**APK 已预置服务器地址、设备访问凭据和 Terminal Location。** 维护方确认预置后台仅用于 Stripe 测试环境。免手动配置并不保证当前设备支持拍卡或支付成功。
 
 本地检查通过后，进入 **⋮ → Settings**：
 
-1. 使用预置服务器和门店，除非测试负责人另行提供其他测试配置。**Your payment key** 是后端设备访问凭据，不是 Stripe secret key。
-2. 如需切换配置，填写新的测试服务器和设备凭据，再通过 **Find your store** 选择匹配的测试门店。确认显示名称与币种（USD/CAD）。
+1. 本版设置页不能编辑预置的服务器、访问凭据和门店；需要更换时请联系测试负责人。设备访问凭据不是 Stripe secret key。
+2. 确认商户显示名称与币种（USD/CAD）。
 3. 演示时先开启 **Use a simulated card reader**，再保存。**首次安装时这个开关默认关闭。**
 4. 后端必须使用 Stripe 测试模式。开始演示前，确认界面显示 **SIMULATED**，Diagnostics 中的读卡器也是模拟状态。
 

@@ -40,6 +40,8 @@ The dated release tag identifies the distribution revision. The app's internal v
 - Backend, device credential and Terminal Location defaults are present. A fresh installation displayed these values without manual entry. Credential values and private endpoint addresses are omitted from this record.
 - Demo mode defaults to OFF. It selects the reader type and does not establish the backend's Stripe test/live mode.
 - A read-only Location request succeeded and included the configured Location. No payment, capture or refund request was sent during verification. The read-only response did not establish Stripe test/live mode.
+- On 2026-10-23, the maintainer confirmed that the configured service is for testing only. This is a maintainer statement, separate from the read-only verification above.
+- The current Settings screen does not expose editable backend, device credential or Location fields. Merchant display name, currency, Demo mode, appearance and tap-position controls remain available.
 - Application and backend source were inspected locally and are excluded from the public distribution repository and release assets.
 
 ## Samsung SM-T733 test

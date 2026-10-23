@@ -1,8 +1,8 @@
 # Device evaluation guide / 设备验证指南
 
-Use an operator-controlled Stripe **test-mode** backend for this preview. The position-settings APK includes backend, device credential and Location presets; verify the selected test setup with the evaluation operator. Never paste a Stripe secret key into the app. Demo mode does not select the backend's Stripe test/live mode.
+Use an operator-controlled Stripe **test-mode** backend for this preview. The position-settings APK includes backend, device credential and Location presets; the maintainer confirms that this preset backend is for Stripe testing only. Never put a Stripe secret key in the app. Demo mode does not select the backend's Stripe test/live mode.
 
-本预览版使用测试负责人管理的 Stripe **测试模式**后端。拍卡位置设置版已预置服务器、设备凭据和门店；支付演示前与测试负责人核对选中的测试配置。不要把 Stripe secret key 填入 App。Demo mode 不会切换后台的测试/正式环境。
+本预览版使用测试负责人管理的 Stripe **测试模式**后端。拍卡位置设置版已预置服务器、设备凭据和门店；维护方确认该预置后台仅用于 Stripe 测试。不要把 Stripe secret key 放入 App。Demo mode 不会切换后台的测试/正式环境。
 
 The signing certificate differs from the original `v0.1.0`. Prefer a fresh test device. Resolve pending transactions and preserve required records before uninstalling an old version; uninstalling deletes local data.
 
@@ -30,12 +30,12 @@ Consult [Stripe's current requirements](https://docs.stripe.com/terminal/payment
 ## 3. Demonstrate the simulated flow / 模拟演示
 
 1. Once the local gate passes, open **⋮ → Settings**.
-2. Check the preset configuration. If the operator supplies a different test setup, enter that server and device credential, then select **Find your store** and its matching test Terminal Location. Confirm USD/CAD and the display name.
+2. Confirm USD/CAD and the display name. The backend, device credential and Location are preset and cannot be edited in this Settings screen; contact the evaluation operator if they need changing.
 3. Turn **Use a simulated card reader** ON **before Save**. It is OFF by default on a fresh install.
 4. Grant requested permissions. Confirm **SIMULATED** on screen and **Card reader: SIMULATED — payments are not real** in Diagnostics.
 5. Run the agreed sample amount through the simulated payment flow. Verify the transaction in Stripe's test environment; record capture/refund results separately if tested.
 
-通过本地检查后进入设置，核对预置测试配置；仅在负责人提供其他测试配置时修改服务器、凭据和门店。先打开模拟读卡器开关再保存。授予所需权限，确认页面和 Diagnostics 均显示模拟状态，然后演示测试金额。支付、确认、退款等结果分别记录，并在 Stripe 测试环境核对。
+通过本地检查后进入设置，确认显示名称和币种。本版设置页不能编辑预置服务器、凭据或门店，需要更换时联系测试负责人。先打开模拟读卡器开关再保存。授予所需权限，确认页面和 Diagnostics 均显示模拟状态，然后演示测试金额。支付、确认、退款等结果分别记录，并在 Stripe 测试环境核对。
 
 **This stage tests the integration flow; no physical card-read result is established.** The app's eligibility gate still applies. For current simulated-reader behavior, see [Stripe's testing guide](https://docs.stripe.com/terminal/references/testing?terminal-sdk-platform=android).
 

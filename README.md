@@ -34,12 +34,12 @@ The APK installs on Android 8.0 or later; the app's Tap to Pay checks require **
 
 ## Configure a demonstration
 
-**The APK supplies preset backend, device credential and Terminal Location values.** Check the selected configuration with the evaluation operator before a payment demonstration. Preset values do not establish that a device supports Tap to Pay or that a payment will succeed.
+**The APK supplies preset backend, device credential and Terminal Location values.** The maintainer confirms that the preset backend is for Stripe testing only. Preset values do not establish that a device supports Tap to Pay or that a payment will succeed.
 
 After the local checks pass, open **⋮ → Settings**:
 
-- Keep the supplied server and Location presets unless the evaluation operator provides a different test setup. The payment key is a device credential for the backend, **not a Stripe secret key**.
-- To change test setups, enter the operator's server and device credential, select **Find your store** and choose the matching test Terminal Location. Confirm the display name and currency (USD or CAD).
+- The server, device credential and Location are preset and cannot be edited in this version's Settings screen. Contact the evaluation operator if these need changing. The device credential is **not a Stripe secret key**.
+- Confirm the business display name and currency (USD or CAD).
 - For a simulated demonstration, turn **Use a simulated card reader** ON before saving. **This switch defaults to OFF on a fresh install.**
 - Use a backend connected only to Stripe test mode. Confirm the app shows **SIMULATED** and Diagnostics identifies the reader as simulated before demonstrating a payment.
 
