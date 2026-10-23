@@ -2,9 +2,13 @@
 
 用于初步检查商米设备的 Stripe Tap to Pay 条件，并通过 Stripe 模拟读卡器演示支付流程。
 
-**0.1.0 为测试预览版。本次发布尚未完成任何商米设备的独立实机验证。** 本地检查通过或模拟支付成功，都不能作为设备兼容认证。
+**2026-10-21 拍卡位置设置预览版。** 已在三星 SM-T733 验证全新安装、预置配置和位置设置保存。本次发布尚未完成任何商米设备的独立实机验证。本地检查通过或模拟支付成功，都不能作为设备兼容认证。
 
-[下载 APK](https://github.com/RosperTech/stripe-tap-to-pay-demo/releases/download/v0.1.0/Rosper-Tap-to-Pay-0.1.0-release.apk) · [版本与附件](https://github.com/RosperTech/stripe-tap-to-pay-demo/releases/tag/v0.1.0) · [English](README.md) · [详细验证步骤](docs/TESTING.md)
+[下载 APK](https://github.com/RosperTech/stripe-tap-to-pay-demo/releases/download/v0.1.0-position-settings.20261021/Rosper-Pay-5.8.1-position-settings.apk) · [版本与附件](https://github.com/RosperTech/stripe-tap-to-pay-demo/releases/tag/v0.1.0-position-settings.20261021) · [English](README.md) · [详细验证步骤](docs/TESTING.md)
+
+新版已预置服务器、设备访问凭据和门店，新安装无需手动填写这些项目。设备条件检查和读卡器连接仍需通过。文件名中的 `5.8.1` 是 Stripe Terminal SDK 版本，App 内部版本仍为 `0.1.0` / code `1`；请按发布标识和校验值区分新旧包。
+
+**从原 v0.1.0 升级：签名证书已变化，不能直接覆盖安装。** 建议使用未安装旧版的新测试设备。使用原设备时，先处理未完成交易、保存所需记录，再卸载旧版后安装；卸载会删除本地数据和设置。
 
 ## 如何理解结果
 
@@ -28,24 +32,29 @@ APK 最低可安装系统为 Android 8.0；Tap to Pay 的本地检查要求 **An
 
 ## 配置模拟演示
 
-**APK 未预置服务器地址、设备 API key 或 Terminal Location；此次发布也未提供公共演示后端。** 安装后可做本地检查，完整支付演示需要由测试负责人提供与此 App 匹配的测试后端。
+**APK 已预置服务器地址、设备访问凭据和 Terminal Location。** 支付演示前仍需与测试负责人确认选中的测试配置。免手动配置并不保证当前设备支持拍卡或支付成功。
 
 本地检查通过后，进入 **⋮ → Settings**：
 
-1. 填写 **Rosper server address**（测试服务器地址）和 **Your payment key**（测试负责人提供的设备访问凭据）。这里不是填写 Stripe secret key。
-2. 点击 **Find your store**，选择测试 Terminal Location，并设置商户名称和币种（USD/CAD）。
+1. 使用预置服务器和门店，除非测试负责人另行提供其他测试配置。**Your payment key** 是后端设备访问凭据，不是 Stripe secret key。
+2. 如需切换配置，填写新的测试服务器和设备凭据，再通过 **Find your store** 选择匹配的测试门店。确认显示名称与币种（USD/CAD）。
 3. 演示时先开启 **Use a simulated card reader**，再保存。**首次安装时这个开关默认关闭。**
 4. 后端必须使用 Stripe 测试模式。开始演示前，确认界面显示 **SIMULATED**，Diagnostics 中的读卡器也是模拟状态。
 
 Demo mode 只控制读卡器是否模拟，不会自动切换后端的 Stripe 测试/正式环境。Stripe secret key 只能保存在服务器端，不能放入 App 或公开 issue。此 App 在相应配置下具备真实收款能力；本预览版用于评估，不用于客户正式收银。
 
+## 调整拍卡提示位置
+
+在 **Settings** 中选择设备默认位置，或选择自定义位置、调整横向/纵向位置后保存。恢复默认会回到设备默认设置。已在三星 SM-T733 验证横向 30% / 纵向 70% 保存、冷启动保留，以及恢复默认后再次冷启动保留；实际支付提示界面的效果尚未验证。
+
 ## 已知限制
 
-- APK 使用 **Android Debug 测试签名证书**，但应用本身为不可调试的 release 构建。将来改用正式签名时，可能需要卸载预览版；卸载会删除本地数据。
+- APK 使用 **Android Debug 测试签名证书**，但应用本身为不可调试的 release 构建。证书与原 v0.1.0 不同，升级前请查看上方提示。
 - 内置 Stripe Terminal SDK **5.8.1**，不表示已覆盖当前及未来所有要求。
 - APK 没有显式声明 Google Play Store/Services 的包查询可见性，部分固件上的 GMS 本地检查可能误报。遇到失败，应先确认实际固件与服务状态，不能仅凭这一行判断硬件不支持。
 - PCI 设备类别检查按型号前缀判断，Root/完整性检查也只是本地规则，不是权威认证。最终仍要以 Stripe 实机连接和设备校验结果为依据。
 - 模拟演示也需要先通过设备条件检查，不能用 Demo mode 绕过不符合条件的设备。
+- 三星 SM-T733 安装和启动通过，但没有 NFC，其他部分条件检查也未通过。因此尚未验证模拟支付、真实读卡器连接、实体卡支付、扣款确认或退款；SUNMI CPAD 尚未完成独立实机验证。
 
 ## 反馈测试结果
 

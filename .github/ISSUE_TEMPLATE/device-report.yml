@@ -23,8 +23,8 @@ body:
   - type: input
     id: app
     attributes:
-      label: App version and test date / App 版本与测试日期
-      placeholder: "0.1.0; YYYY-MM-DD"
+      label: Release tag, app version and test date / 发布标识、App 版本与测试日期
+      placeholder: "v0.1.0-position-settings.20261021; app 0.1.0; YYYY-MM-DD"
     validations:
       required: true
   - type: dropdown
